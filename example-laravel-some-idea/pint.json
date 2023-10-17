@@ -1,0 +1,19 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "simplified_null_return": true,
+        "braces": {
+            "allow_single_line_closure": true,
+            "position_after_functions_and_oop_constructs": "same",
+            "position_after_control_structures" : "same"
+        },
+        "braces_position": {
+            "classes_opening_brace": "same_line",
+            "functions_opening_brace": "same_line"
+        },
+        "new_with_braces": {
+            "anonymous_class": false,
+            "named_class": false
+        }
+    }
+}

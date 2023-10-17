@@ -1,0 +1,111 @@
+version: "3.7"
+services:
+
+  app:
+    build:
+      args:
+        user: sammy
+        uid: 1000
+      context: ./
+      dockerfile: ./docker/php/Dockerfile
+    image: example-laravel-some-idea_app
+    container_name: example-laravel-some-idea_app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - example-laravel-some-idea
+
+
+  nginx:
+      image: nginx:alpine
+      container_name: example-laravel-some-idea_nginx
+      restart: unless-stopped
+      ports:
+        - 9080:80
+        - 7080:8080
+      volumes:
+        - ./:/var/www
+        - ./docker/nginx:/etc/nginx/conf.d/
+      networks:
+        - example-laravel-some-idea
+
+  postgres:
+    image: postgres:alpine
+    container_name: postgres_example-laravel-some-idea
+    environment:
+      POSTGRES_DB: example-laravel-some-idea
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: username
+    ports:
+      - 5435:5432
+    volumes:
+      - ./docker/my-db:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - example-laravel-some-idea
+
+  mariadb:
+      image: mariadb:10.6.5
+      container_name: mariadb-example-laravel-some-idea
+      ports:
+        - "3306:3306"
+      environment:
+        MYSQL_ROOT_PASSWORD: 123
+      volumes:
+        - ./docker/my-mysql-db:/var/lib/mysql
+      networks:
+        - example-laravel-some-idea
+
+  pgweb:
+    image: sosedoff/pgweb
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://username:password@postgres:5432/example-laravel-some-idea?sslmode=disable
+    networks:
+      - example-laravel-some-idea
+    ports:
+      - 8085:8081
+    restart: on-failure
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: example-laravel-some-idea_redis_commander
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+      - HTTP_USER=root
+      - HTTP_PASSWORD=qwerty
+    ports:
+      - 8081:8081
+    networks:
+      - example-laravel-some-idea
+    depends_on:
+      - redis
+
+
+  redis:
+    image: redis:latest
+    container_name: example-laravel-some-idea_redis
+    command: redis-server
+    volumes:
+      - ./docker/my-redis:/var/lib/redis
+      - ./docker/redis-config:/usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+    networks:
+      - example-laravel-some-idea
+
+  mailhog:
+    image: 'mailhog/mailhog:latest'
+    container_name: example-laravel-some-idea_mailhog
+    ports:
+      - '${FORWARD_MAILHOG_PORT:-1025}:1025'
+      - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
+    networks:
+      - example-laravel-some-idea
+
+networks:
+  example-laravel-some-idea:
+    driver: bridge
