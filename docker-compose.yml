@@ -31,21 +31,6 @@ services:
       networks:
         - example-laravel-some-idea
 
-  postgres:
-    image: postgres:alpine
-    container_name: postgres_example-laravel-some-idea
-    environment:
-      POSTGRES_DB: example-laravel-some-idea
-      POSTGRES_PASSWORD: password
-      POSTGRES_USER: username
-    ports:
-      - 5435:5432
-    volumes:
-      - ./docker/my-db:/var/lib/postgresql/data
-    restart: unless-stopped
-    networks:
-      - example-laravel-some-idea
-
   mariadb:
       image: mariadb:10.6.5
       container_name: mariadb-example-laravel-some-idea
@@ -58,17 +43,6 @@ services:
       networks:
         - example-laravel-some-idea
 
-  pgweb:
-    image: sosedoff/pgweb
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_URL: postgres://username:password@postgres:5432/example-laravel-some-idea?sslmode=disable
-    networks:
-      - example-laravel-some-idea
-    ports:
-      - 8085:8081
-    restart: on-failure
 
   redis-commander:
     image: rediscommander/redis-commander:latest

@@ -9,3 +9,13 @@
 4. in conf file edit root /var/www/your-project-folder-name/public;
 5. in conf file edit listen 80; to other free port
 6. in docker-compose file add new port to list 
+
+
+| Services | Version |
+|----------|---------|
+| php      | 8.1     |
+| Mariadb  | 10.6.5  |
+| Redis    | latest  |
+| MailHog  | latest  |
+| Nginx    | latest  |
+| Composer | latest  |
