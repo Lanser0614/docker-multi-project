@@ -6,7 +6,7 @@ namespace App\Http\Requests\Merchant\Merchant;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MerchantStoreRequest extends FormRequest {
+class MerchantUpdateRequest extends FormRequest {
     public function rules(): array {
         return [
             'name' => ['required', 'string', 'max:25'],

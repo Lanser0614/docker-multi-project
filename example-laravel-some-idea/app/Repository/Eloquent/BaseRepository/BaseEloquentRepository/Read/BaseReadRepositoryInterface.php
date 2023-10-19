@@ -12,7 +12,7 @@ interface BaseReadRepositoryInterface {
 
     public function all(array $relations = []): BaseReadRepositoryInterface;
 
-    public function show(int $id, array $relations = []): BaseReadRepositoryInterface;
+    public function find(int $id, array $relations = []): BaseReadRepositoryInterface;
 
     public function get(): Collection;
 

@@ -24,7 +24,7 @@ class MerchantUser extends Authenticate {
     protected $table = 'merchant_users';
 
     public function merchants(): BelongsToMany {
-        return $this->belongsToMany(Merchant::class, 'user_merchants', 'merchant_user_id', 'merchant_id');
+        return $this->belongsToMany(Merchant::class, 'user_merchants_pivot', 'merchant_user_id', 'merchant_id');
     }
 
     public function getId(): int {

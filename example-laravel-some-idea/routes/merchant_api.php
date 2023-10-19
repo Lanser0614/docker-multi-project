@@ -23,6 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', [MerchantUserController::class, 'register']);
 Route::post('login', [MerchantUserController::class, 'login']);
 
-Route::prefix('merchant')->middleware('auth:sanctum',)->group(function (){
-   Route::post('store', [MerchantController::class, 'store']);
+Route::prefix('merchant')->middleware('auth:sanctum')->group(function () {
+    Route::get('/', [MerchantController::class, 'index']);
+    Route::post('/', [MerchantController::class, 'store']);
+    Route::post('/{id}', [MerchantController::class, 'update']);
+    Route::get('/{id}', [MerchantController::class, 'show']);
 });

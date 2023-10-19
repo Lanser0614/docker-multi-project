@@ -14,6 +14,9 @@
         "new_with_braces": {
             "anonymous_class": false,
             "named_class": false
+        },
+        "phpdoc_add_missing_param_annotation" : {
+            "only_untyped": false
         }
     }
 }

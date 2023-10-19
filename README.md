@@ -19,3 +19,6 @@
 | MailHog  | latest  |
 | Nginx    | latest  |
 | Composer | latest  |
+| Postgres | latest  |
+| PgWeb    | latest  |
+| Adminer  | latest  |

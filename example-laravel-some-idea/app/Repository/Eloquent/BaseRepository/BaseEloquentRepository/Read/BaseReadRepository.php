@@ -24,7 +24,7 @@ class BaseReadRepository implements BaseReadRepositoryInterface {
         return $this;
     }
 
-    public function show(int $id, array $relations = []): BaseReadRepositoryInterface {
+    public function find(int $id, array $relations = []): BaseReadRepositoryInterface {
         $this->model->with($relations)->where('id', $id);
 
         return $this;

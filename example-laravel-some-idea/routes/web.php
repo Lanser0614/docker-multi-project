@@ -1,5 +1,6 @@
 <?php
 
+use App\UseCases\Merchant\Merchant\DeleteMerchantUseCase;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return "ok";
+Route::get('/', function (DeleteMerchantUseCase $useCase) {
+    $useCase->perform(1);
 });

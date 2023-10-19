@@ -9,11 +9,15 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('user_merchants_pivot', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('merchant_user_id')->constrained('merchant_users');
             $table->foreignId('merchant_id')->constrained('merchants');
-            $table->enum('role', ['owner', 'seller']);
+            $table->string('name');
+            $table->unsignedBigInteger('phone_number');
+            $table->unique([
+                'merchant_id',
+                'phone_number',
+            ]);
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration {
      * Reverse the migrations.
      */
     public function down(): void {
-        Schema::dropIfExists('user_merchants_pivot');
+        Schema::dropIfExists('clients');
     }
 };

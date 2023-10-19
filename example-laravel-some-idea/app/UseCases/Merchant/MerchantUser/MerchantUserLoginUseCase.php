@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 
 class MerchantUserLoginUseCase {
     public function __construct(
-        private readonly MerchantUserReadRepositoryInterface $baseReadRepository,
+        private readonly MerchantUserReadRepositoryInterface $merchantUserReadRepository,
         private readonly CheckEntityTask $checkEntityTask
     ) {
     }
@@ -22,12 +22,12 @@ class MerchantUserLoginUseCase {
      * @throws BusinessException
      */
     public function perform(MerchantUserLoginDTO $dto): mixed {
-        $user = $this->baseReadRepository->setModel(MerchantUser::query())->getByPhone($dto->getPhone())->first();
+        $user = $this->merchantUserReadRepository->setModel(MerchantUser::query())->getByPhone($dto->getPhone())->first();
 
         $this->checkEntityTask->run($user);
 
         if (Hash::check($dto->getPassword(), $user->password)) {
-            $token = $user->createToken('xordiq.uz')->plainTextToken;
+            $token = $user->createToken('test.uz')->plainTextToken;
         } else {
             throw new BusinessException('Wrong password');
         }
