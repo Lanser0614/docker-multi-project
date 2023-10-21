@@ -20,3 +20,5 @@
 /docker/my-db
 /docker/my-mysql-db
 /docker/my-redis
+/docker/mongodb
+/docker/neo4j_database

@@ -11,14 +11,20 @@
 6. in docker-compose file add new port to list 
 
 
-| Services | Version |
-|----------|---------|
-| php      | 8.1     |
-| Mariadb  | 10.6.5  |
-| Redis    | latest  |
-| MailHog  | latest  |
-| Nginx    | latest  |
+| Services | Version | username | password                 |
+|----|---------|----------|--------------------------|
+| php | 8.1     |
+| Mariadb | 10.6.5  | root     | 123                      |
+| Redis | latest  |
+| MailHog | latest  |
+| Nginx | latest  |
 | Composer | latest  |
-| Postgres | latest  |
-| PgWeb    | latest  |
-| Adminer  | latest  |
+| Postgres | latest  | username | password                 |
+| PgWeb | latest  |
+| Adminer | latest  |
+| rabbitmq | latest  | guest    | guest                    |
+| neo4j | latest  | neo4j    | CHANGETHISIFYOURENOTZUCK |
+| kafka | latest  |          |                          |
+| kafka-ui | latest  |          |                          |
+| mongo-db | latest  | mongo    | 123                      |
+| mongo-express | latest  | admin    | changeme                      |
