@@ -28,5 +28,5 @@
 | kafka-ui      | latest  |          |                          |
 | mongo-db      | latest  | mongo    | 123                      |
 | mongo-express | latest  | admin    | changeme                      |
-| ElasticSearch | latest  | admin    | changeme                      |
-| kibana        | latest  | admin    | changeme                      |
+| ElasticSearch | latest  |     |                       |
+| kibana        | latest  |     |                       |
