@@ -17,6 +17,7 @@ class StoreMerchantUseCase {
     }
 
     public function perform(StoreMerchantDTO $storeMerchantDTO): Model {
+
         $merchant = (new Merchant)->setName($storeMerchantDTO->getName())
             ->setLatitude($storeMerchantDTO->getLatitude())
             ->setLongitude($storeMerchantDTO->getLongitude());
